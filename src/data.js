@@ -1,0 +1,38 @@
+export const projects = [
+  {
+    id: 'alkhazen', number: '01', name: 'Alkhazen AI', category: 'ai', type: 'Independent development',
+    eyebrow: 'ACCOUNTING INTELLIGENCE',
+    description: 'An AI accounting assistant connected to Alkhazen ERP, designed to make business data easier to explore through natural-language questions and accounting-aware responses.',
+    tags: ['AI Integration', 'ERP', 'Business Data'],
+    highlight: 'From accounting questions to useful business context',
+    repository: 'alkhazen-ai-showcase',
+    accent: 'mint', symbol: 'AK',
+  },
+  {
+    id: 'alnajah', number: '02', name: 'AlNajah AI', category: 'ai', type: 'Independent development',
+    eyebrow: 'EDUCATION MANAGEMENT',
+    description: 'An AI assistant connected to AlNajah, a school and institute management system, helping staff ask questions about the data available to their organization.',
+    tags: ['AI Integration', 'Education', 'Data Queries'],
+    highlight: 'Natural-language access to educational operations data',
+    repository: 'alnajah-ai-showcase',
+    accent: 'blue', symbol: 'AN',
+  },
+  {
+    id: 'wakeel', number: '03', name: 'Al Wakeel AI', category: 'ai', type: 'Collaborative project',
+    eyebrow: 'LEGAL TECHNOLOGY',
+    description: 'A Syrian law-office management platform combining administrative and financial workflows with an AI assistant for office-specific data and Syrian legal knowledge.',
+    tags: ['Legal Tech', 'AI Assistant', 'Management'],
+    highlight: 'A unified workspace for legal practice operations',
+    repository: 'al-wakeel-ai-showcase',
+    accent: 'violet', symbol: 'AW',
+  },
+  {
+    id: 'bindex', number: '04', name: 'Bindex POS', category: 'apps', type: 'Independent development',
+    eyebrow: 'ANDROID BUSINESS APPLICATION',
+    description: 'An Android point-of-sale and accounting application for retail shops, with barcode-based sales, invoice and label printing, and detailed accounting reports.',
+    tags: ['Android', 'POS', 'Barcode & Printing'],
+    highlight: 'Sales, inventory workflows, and accounting in one mobile system',
+    repository: 'bindex-pos-showcase',
+    accent: 'amber', symbol: 'BX',
+  },
+];
