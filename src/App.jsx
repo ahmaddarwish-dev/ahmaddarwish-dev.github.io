@@ -49,7 +49,7 @@ function Hero() {
       <div className="hero-content">
         <div className="availability"><span className="status-dot"/> SOFTWARE ENGINEER · NODE.JS & REACT</div>
         <h1><span className="hero-name">{profile.name || 'Ahmad Darwish'}</span>Engineering software<br/>that <span>solves problems.</span></h1>
-        <p className="hero-description">I'm <strong>{profile.name || 'Ahmad Darwish'}</strong>, a software engineer building web applications, business software, and AI integrations. My primary focus is <strong>Node.js</strong> and <strong>React</strong> — with hands-on experience developing commercial products.</p>
+        <p className="hero-description">I'm <strong>{profile.name || 'Ahmad Darwish'}</strong>, a software engineer building web applications, business software, and AI integrations. My primary focus is <strong>Node.js</strong>, <strong>React</strong>, and <strong>n8n</strong> — with hands-on experience developing commercial products.</p>
         <div className="hero-actions"><a className="btn btn-primary" href="#work">Explore projects <ArrowUpRight size={18}/></a><a className="btn btn-secondary" href={config.linkedin} target="_blank" rel="noopener noreferrer">Connect on LinkedIn <ArrowUpRight size={17}/></a></div>
         <dl className="hero-stats" aria-label="Professional summary">
           {heroStats.map(stat => <div className="hero-stat" key={stat.label}><dt>{stat.label}</dt><dd>{stat.value}</dd></div>)}
