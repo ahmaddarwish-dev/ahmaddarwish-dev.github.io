@@ -5,6 +5,20 @@ import { projects } from './data.js';
 
 const isConfigured = config.githubUsername !== 'YOUR_GITHUB_USERNAME';
 const repositoryUrl = (slug) => isConfigured ? `https://github.com/${config.githubUsername}/${slug}` : null;
+const profile = config.profile || {};
+
+function formatExperience(startDate) {
+  if (!startDate) return 'Add your experience';
+  const start = new Date(startDate);
+  if (Number.isNaN(start.getTime())) return 'Add your experience';
+
+  const now = new Date();
+  let years = now.getFullYear() - start.getFullYear();
+  const hasNotReachedAnniversary = now.getMonth() < start.getMonth() || (now.getMonth() === start.getMonth() && now.getDate() < start.getDate());
+  if (hasNotReachedAnniversary) years -= 1;
+  if (years <= 0) return '<1 year';
+  return `${years}+ year${years > 1 ? 's' : ''}`;
+}
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -23,14 +37,24 @@ function Header() {
 function Label({children}) { return <div className="section-kicker"><span className="kicker-line"/>{children}</div> }
 
 function Hero() {
+  const heroStats = [
+    { label: 'Experience', value: formatExperience(profile.companyStartDate) },
+    { label: 'Current company', value: profile.company || 'Add your company' },
+    { label: 'Role', value: profile.title || 'Add your role' },
+    { label: 'Education', value: profile.education || 'Add your education' },
+  ];
+
   return <section className="hero shell" id="top">
     <div className="hero-grid">
       <div className="hero-content">
         <div className="availability"><span className="status-dot"/> SOFTWARE ENGINEER · NODE.JS & REACT</div>
-        <h1>Engineering software<br/>that <span>solves problems.</span></h1>
-        <p className="hero-description">I'm <strong>Ahmad Darwish</strong>, a software engineer building web applications, business software, and AI integrations. My primary focus is <strong>Node.js</strong> and <strong>React</strong> — with hands-on experience developing commercial products.</p>
+        <h1><span className="hero-name">{profile.name || 'Ahmad Darwish'}</span>Engineering software<br/>that <span>solves problems.</span></h1>
+        <p className="hero-description">I'm <strong>{profile.name || 'Ahmad Darwish'}</strong>, a software engineer building web applications, business software, and AI integrations. My primary focus is <strong>Node.js</strong> and <strong>React</strong> — with hands-on experience developing commercial products.</p>
         <div className="hero-actions"><a className="btn btn-primary" href="#work">Explore projects <ArrowUpRight size={18}/></a><a className="btn btn-secondary" href={config.linkedin} target="_blank" rel="noopener noreferrer">Connect on LinkedIn <ArrowUpRight size={17}/></a></div>
-        <div className="hero-details"><span><MapPin size={15}/>{config.location}</span><span className="detail-sep"/><span>Working at Alkhazen Soft since Aug 2025</span></div>
+        <dl className="hero-stats" aria-label="Professional summary">
+          {heroStats.map(stat => <div className="hero-stat" key={stat.label}><dt>{stat.label}</dt><dd>{stat.value}</dd></div>)}
+        </dl>
+        <div className="hero-details"><span><MapPin size={15}/>{config.location}</span><span className="detail-sep"/><span>{`Working at ${profile.company || 'Alkhazen Soft'} since Aug 2025`}</span></div>
       </div>
       <div className="hero-visual" aria-label="Abstract illustration of software engineering and AI-enabled business systems">
         <div className="grid-dots"/>
@@ -77,7 +101,7 @@ function Expertise() {
 }
 function About() {
   return <section className="section about-section" id="about"><div className="shell"><Label>03 / MY BACKGROUND</Label><div className="about-grid"><div><h2>Developer by practice.<br/><em>Engineer in progress.</em></h2><p className="about-description">I combine professional software work with ongoing university studies. I enjoy turning demanding business requirements into usable systems — and learning through building, testing, and improving real applications.</p><a href={config.linkedin} target="_blank" rel="noopener noreferrer" className="inline-link">See professional profile <ArrowUpRight size={17}/></a></div>
-    <div className="timeline"><div className="timeline-item"><span className="timeline-marker"/><div className="timeline-date">AUG 2025 — PRESENT</div><h3>Software Engineer</h3><p>Alkhazen Soft</p><small>Software development and business-system integrations</small></div><div className="timeline-item"><span className="timeline-marker"/><div className="timeline-date">NOV 2024 — EXPECTED SEP 2028</div><h3>Bachelor's in Software Engineering</h3><p>Yarmouk Private University</p><small>Computer Software Engineering</small></div></div></div></div></section>;
+    <div className="timeline"><div className="timeline-item"><span className="timeline-marker"/><div className="timeline-date">AUG 2025 — PRESENT</div><h3>{profile.title || 'Software Engineer'}</h3><p>{profile.company || 'Alkhazen Soft'}</p><small>Software development and business-system integrations</small></div><div className="timeline-item"><span className="timeline-marker"/><div className="timeline-date">NOV 2024 — EXPECTED SEP 2028</div><h3>{profile.education || 'Add your education'}</h3><p>Yarmouk Private University</p><small>Computer Software Engineering</small></div></div></div></div></section>;
 }
 function Contact() {
   return <section className="contact-section" id="contact"><div className="shell contact-wrap"><div className="contact-glow"/><Label>04 / LET'S CONNECT</Label><h2>Let's build something <em>useful.</em></h2><p>Interested in Node.js, React, backend development, or practical AI solutions? I'd be glad to connect.</p><div className="contact-actions"><a href={`mailto:${config.email}`} className="btn btn-light"><Mail size={18}/> Email me <ArrowUpRight size={18}/></a><a href={config.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-outline"><Linkedin size={18}/> LinkedIn <ArrowUpRight size={18}/></a></div></div></section>;
